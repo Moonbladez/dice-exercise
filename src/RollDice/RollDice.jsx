@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import Die from "../Die/Die";
+
 class RollDice extends Component {
 	static defaultProps = {
 		sides: ["one", "two", "three", "four", "five", "six"],
 	};
 	constructor(props) {
 		super(props);
-		this.state = { die1: "one", die2: "one" };
+		this.state = { die1: "two", die2: "one" };
 		this.roll = this.roll.bind(this);
-    }
-    
+	}
+
 	roll() {
 		const newDie1 = this.props.sides[
 			Math.floor(Math.random() * this.props.sides.length)
@@ -19,11 +20,13 @@ class RollDice extends Component {
 		];
 		this.setState({ die1: newDie1, die2: newDie2 });
 	}
-    render() {
+	render() {
+		console.dir(this.state.die2);
+		console.dir(this.state.die1);
 		return (
 			<div>
-				<Die face={this.state.die1}></Die>
-				<Die face={this.state.die2}></Die>
+				<Die face={this.state.die1} />
+				<Die face={this.state.die2} />
 				<button onClick={this.roll}>Roll Dice</button>
 			</div>
 		);
